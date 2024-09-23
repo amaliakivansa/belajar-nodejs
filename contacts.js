@@ -51,4 +51,23 @@ const detailContact = (name) => {
   console.log(chalk.cyan.inverse.bold(contact.phone));
 };
 
-module.exports = { saveContact, listContacts };
+const deleteContact = (name) => {
+  const contacts = loadContacts();
+
+  const newContacts = contacts.filter(
+    (item) => item.name.toLowerCase() !== name.toLowerCase()
+  );
+
+  if (contacts.length === newContacts.length) {
+    console.log(chalk.red.inverse.bold(`Data kontak ${name} tidak ditemukan`));
+    return false;
+  }
+
+  fs.writeFileSync('./data/contacts.json', JSON.stringify(newContacts));
+
+  console.log(
+    chalk.green.inverse.bold(`Data kontak ${name} berhasil dihapus dari daftar`)
+  );
+};
+
+module.exports = { saveContact, listContacts, detailContact, deleteContact };

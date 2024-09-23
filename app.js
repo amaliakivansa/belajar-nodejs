@@ -44,4 +44,12 @@ yargs.command({
   },
 });
 
+yargs.command({
+  command: 'delete',
+  describe: 'Menghapus kontak berdasarkan nama',
+  handler(argv) {
+    contacts.deleteContact(argv.nama);
+  },
+});
+
 yargs.parse();
