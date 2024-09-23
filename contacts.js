@@ -38,4 +38,17 @@ const listContacts = () => {
   });
 };
 
+const detailContact = (name) => {
+  const contacts = loadContacts();
+
+  const contact = contacts.find(
+    (item) => item.name.toLowerCase() === name.toLowerCase()
+  );
+  console.log(chalk.cyan.inverse.bold(contact.name));
+  if (contact.email) {
+    console.log(chalk.cyan.inverse.bold(contact.email));
+  }
+  console.log(chalk.cyan.inverse.bold(contact.phone));
+};
+
 module.exports = { saveContact, listContacts };

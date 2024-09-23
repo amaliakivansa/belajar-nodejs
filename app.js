@@ -36,4 +36,12 @@ yargs.command({
   },
 });
 
+yargs.command({
+  command: 'detail',
+  describe: 'Menampilkan detail sebuah kontak berdasarkan nama',
+  handler(argv) {
+    contacts.detailContact(argv.nama);
+  },
+});
+
 yargs.parse();
