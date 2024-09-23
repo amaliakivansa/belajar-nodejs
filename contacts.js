@@ -29,4 +29,13 @@ const saveContact = (name, email, phone) => {
   console.log(chalk.green.inverse.bold('Terima kasih sudah menginput data.'));
 };
 
-module.exports = { saveContact };
+const listContacts = () => {
+  const contacts = loadContacts();
+
+  console.log(chalk.cyan.inverse.bold('Daftar Kontak : '));
+  contacts.forEach((contact, i) => {
+    console.log(`${i + 1}. ${contact.name} - ${contact.phone}`);
+  });
+};
+
+module.exports = { saveContact, listContacts };

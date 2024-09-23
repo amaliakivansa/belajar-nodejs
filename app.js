@@ -28,4 +28,12 @@ yargs
   })
   .demandCommand();
 
+yargs.command({
+  command: 'list',
+  describe: 'Menampilkan semua kontak',
+  handler() {
+    contacts.listContacts();
+  },
+});
+
 yargs.parse();
