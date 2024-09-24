@@ -1,12 +1,14 @@
 const express = require('express');
+
 const app = express();
 const expressLayouts = require('express-ejs-layouts');
-const morgan = require('morgan');
+
+const { loadContacts } = require('./utils/contacts');
+
 const port = 3000;
 
 app.set('view engine', 'ejs');
 app.use(expressLayouts);
-app.use(morgan('dev'));
 
 app.get('/', (req, res) => {
   const mahasiswa = [
@@ -39,9 +41,11 @@ app.get('/about', (req, res) => {
 });
 
 app.get('/contact', (req, res) => {
+  const contacts = loadContacts();
   res.render('contact', {
     title: 'Halaman Contact',
     layout: 'layouts/main-layout',
+    contacts,
   });
 });
 
