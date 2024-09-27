@@ -2,7 +2,12 @@
   <div class="row">
     <div class="col-md-8">
       <h2>Daftar Kontak</h2>
-
+      <a class="btn btn-primary mb-2" href="/contact/add">Tambah Kontak</a>
+      <% if (msg.length !== 0) { %>
+      <div class="alert alert-success" role="alert">
+        <%= msg %>
+      </div>
+      <% } %>
       <table class="table">
         <thead>
           <tr>
@@ -13,18 +18,28 @@
           </tr>
         </thead>
         <tbody>
-          <% contacts.forEach((contact, idx) => { idx++ %>
+          <% if (contacts.length === 0) { %>
+          <tr>
+            <td colspan="4">
+              <div class="alert alert-danger fw-bold" role="alert">
+                Data Kontak Kosong.
+              </div>
+            </td>
+          </tr>
+          <% } else { %> <% contacts.forEach((contact, idx) => { idx++ %>
           <tr>
             <th scope="row"><%= idx++ %></th>
             <td><%= contact.nama %></td>
             <td><%= contact.noHP %></td>
             <td>
-              <a href="/contact/<%= contact.nama %>" class="badge rounded-pill bg-success text-light"
+              <a
+                href="/contact/<%= contact.nama %>"
+                class="badge rounded-pill bg-success text-light"
                 ><i class="bi bi-info-circle mr-1"></i>Detail</a
               >
             </td>
           </tr>
-          <% }) %>
+          <% }) %> <% } %>
         </tbody>
       </table>
     </div>
